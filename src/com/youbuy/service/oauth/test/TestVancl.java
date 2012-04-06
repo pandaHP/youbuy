@@ -1,4 +1,4 @@
-package com.youbuy.service.oauth.api.test;
+package com.youbuy.service.oauth.test;
 import java.util.Scanner;
 
 import org.scribe.builder.ServiceBuilder;
@@ -14,7 +14,7 @@ import com.youbuy.service.oauth.api.VanclApi;
 public class TestVancl {
 
 	private static final String NETWORK_NAME = "Vancl";
-	private static final String PROTECTED_RESOURCE_URL = "http://mapi.vancl.com/product/detail";
+	private static final String PROTECTED_RESOURCE_URL = "http://p-api.gicp.net/product/detail";
 	private static final String API_KEY = "71bbb934079a1391c0e9e65bbaeae67c";
 	private static final String API_SECRET = "6b56a04b96cacbcbeb31706901f607ad";
 
