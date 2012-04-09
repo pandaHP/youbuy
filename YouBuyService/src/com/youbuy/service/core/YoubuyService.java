@@ -19,9 +19,9 @@ public class YoubuyService {
 		int i = 0;
 		for (String s : keys) {
 			if (i == 0) {
-				url.append("?" + prop.get(s).toString());
+				url.append("?" + s + "=" + prop.get(s).toString());
 			} else {
-				url.append("&" + prop.get(s).toString());
+				url.append("&" + s + "=" + prop.get(s).toString());
 			}
 
 			i++;
@@ -36,7 +36,7 @@ public class YoubuyService {
 		try {
 			HttpGet httpget = new HttpGet(url);
 			ResponseHandler<String> responseHandler = new BasicResponseHandler();
-			
+
 			return httpclient.execute(httpget, responseHandler);
 		} catch (ClientProtocolException e) {
 			e.printStackTrace();

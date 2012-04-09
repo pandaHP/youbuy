@@ -12,10 +12,19 @@ public class VanclService extends YoubuyService {
 
 	public Object getWeeklyranking() {
 		url.append("/salesvolume/weeklyranking");
-		YoubuyService.handleArguments(url,vc);
-		return YoubuyService.handleGet(YoubuyService.handleArguments(url,vc));
+		return YoubuyService.handleGet(YoubuyService.handleArguments(url, vc));
 	}
-	
-	
-	
+
+	/**
+	 * for test the service
+	 */
+	public static void main(String[] args) {
+		VanclConfig vc = new VanclConfig();
+		vc.init();
+		vc.setFormat("json");
+		vc.setT();
+		vc.setSign();
+		VanclService vs = new VanclService(vc);
+		Object result = vs.getWeeklyranking();
+	}
 }

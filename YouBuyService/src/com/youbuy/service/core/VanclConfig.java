@@ -1,5 +1,8 @@
 package com.youbuy.service.core;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import com.youbuy.service.core.util.EncryptUtil;
 
 public class VanclConfig extends Configuration {
@@ -12,12 +15,17 @@ public class VanclConfig extends Configuration {
 	private String sign_method = "md5";
 	private String t;
 	private String format;
-	private String source = "api.tool.vancl.com";
-	private String uid = "A9FFDE3559430A7B1E23A03F24FCDA05";
-	private String ttid = "api.tool.vancl.com2012032298apitool_wap_2.0";
+	private String source = "vob_shsm_android_001";
+	private String uid = "2012032298";
+	private String ttid = "vob_shsm_android_0012012032298apitool_wap_2.0";
 
-	public VanclConfig() {
-
+	public void init() {
+		super.getMap().put("appKey", appKey);
+		super.getMap().put("ver", ver);
+		super.getMap().put("sign_method", sign_method);
+		super.getMap().put("source", source);
+		super.getMap().put("uid", uid);
+		super.getMap().put("ttid", ttid);
 	}
 
 	public String getAppKey() {
@@ -34,9 +42,10 @@ public class VanclConfig extends Configuration {
 	}
 
 	public void setSign() {
-		String sign = EncryptUtil.md5(appSecret + "appkey" + appKey + "format"
+		String s = appSecret + "appkey" + appKey + "format"
 				+ format + "sign_method" + sign_method + "source" + source
-				+ "t" + t + "ttid" + ttid + "uid" + uid + "ver" + ver);
+				+ "t" + t + "ttid" + ttid + "uid" + uid + "ver" + ver;
+		String sign = EncryptUtil.md5(s);
 		super.getMap().put("sign", sign);
 		this.sign = sign;
 	}
@@ -63,9 +72,11 @@ public class VanclConfig extends Configuration {
 		return t;
 	}
 
-	public void setT(String t) {
-		super.getMap().put("t", t);
-		this.t = t;
+	public void setT() {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddhhmmss");
+		String time = sdf.format(new Date()).toString();
+		super.getMap().put("t", time);
+		this.t = time;
 	}
 
 	public String getFormat() {
