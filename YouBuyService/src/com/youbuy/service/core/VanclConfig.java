@@ -1,19 +1,23 @@
 package com.youbuy.service.core;
 
-public class VanclConfig extends Configuration{
+import com.youbuy.service.core.util.EncryptUtil;
 
-	private String appKey;
+public class VanclConfig extends Configuration {
+
+	private String appSecret = "432229e00595840cb6d5f80d7b72f359";
+
+	private String appKey = "2012032298";
 	private String sign;
-	private String ver;
-	private String sign_method;
+	private String ver = "1.0";
+	private String sign_method = "md5";
 	private String t;
 	private String format;
-	private String source;
-	private String uid;
-	private String ttid;
-	
-	public VanclConfig () {
-	
+	private String source = "api.tool.vancl.com";
+	private String uid = "A9FFDE3559430A7B1E23A03F24FCDA05";
+	private String ttid = "api.tool.vancl.com2012032298apitool_wap_2.0";
+
+	public VanclConfig() {
+
 	}
 
 	public String getAppKey() {
@@ -29,7 +33,10 @@ public class VanclConfig extends Configuration{
 		return sign;
 	}
 
-	public void setSign(String sign) {
+	public void setSign() {
+		String sign = EncryptUtil.md5(appSecret + "appkey" + appKey + "format"
+				+ format + "sign_method" + sign_method + "source" + source
+				+ "t" + t + "ttid" + ttid + "uid" + uid + "ver" + ver);
 		super.getMap().put("sign", sign);
 		this.sign = sign;
 	}
