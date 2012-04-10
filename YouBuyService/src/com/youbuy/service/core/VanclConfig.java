@@ -15,9 +15,9 @@ public class VanclConfig extends Configuration {
 	private String sign_method = "md5";
 	private String t;
 	private String format;
-	private String source = "vob_shsm_android_001";
-	private String uid = "2012032298";
-	private String ttid = "vob_shsm_android_0012012032298apitool_wap_2.0";
+	private String source = "api.tool.vancl.com";
+	private String uid = "A9FFDE3559430A7B1E23A03F24FCDA05";
+	private String ttid = "api.tool.vancl.com2012032298apitool_wap_2.0";
 
 	public void init() {
 		super.getMap().put("appKey", appKey);
@@ -75,8 +75,8 @@ public class VanclConfig extends Configuration {
 	public void setT() {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddhhmmss");
 		String time = sdf.format(new Date()).toString();
-		super.getMap().put("t", time);
-		this.t = time;
+		super.getMap().put("t", "20120410095553");
+		this.t = "20120410095553";
 	}
 
 	public String getFormat() {

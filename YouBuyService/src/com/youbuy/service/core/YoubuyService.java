@@ -1,7 +1,12 @@
 package com.youbuy.service.core;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.apache.http.client.ClientProtocolException;
@@ -16,8 +21,19 @@ public class YoubuyService {
 	public static String handleArguments(StringBuffer url, Configuration config) {
 		HashMap<String, Object> prop = config.getMap();
 		Set<String> keys = prop.keySet();
+		List<String> sortedKeys = new ArrayList<String>(keys);
+		Collections.sort(sortedKeys, new Comparator<String>() {
+
+			@Override
+			public int compare(String o1, String o2) {
+				// TODO Auto-generated method stub
+				return o1.compareTo(o2);
+			}
+
+		});
+
 		int i = 0;
-		for (String s : keys) {
+		for (String s : sortedKeys) {
 			if (i == 0) {
 				url.append("?" + s + "=" + prop.get(s).toString());
 			} else {
