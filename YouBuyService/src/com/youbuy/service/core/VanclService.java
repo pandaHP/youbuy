@@ -16,6 +16,16 @@ public class VanclService extends YoubuyService {
 		url.append("/salesvolume/weeklyranking");
 		return YoubuyService.handleGet(YoubuyService.handleArguments(url, vc));
 	}
+	
+	public String getMalesRanking(){
+		url.append("/salesvolume/malesranking");
+		return YoubuyService.handleGet(YoubuyService.handleArguments(url, vc));
+	}
+	
+	public String getLadiesRanking(){
+		url.append("/salesvolume/ladiesranking");
+		return YoubuyService.handleGet(YoubuyService.handleArguments(url, vc));
+	}
 
 	/**
 	 * for test the service
@@ -28,7 +38,7 @@ public class VanclService extends YoubuyService {
 		vc.setT();
 		vc.setSign();
 		VanclService vs = new VanclService(vc);
-		String result = vs.getWeeklyranking();
+		String result = vs.getLadiesRanking();
 		System.out.println(result);
 	}
 }
