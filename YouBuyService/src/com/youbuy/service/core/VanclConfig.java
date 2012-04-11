@@ -1,5 +1,7 @@
 package com.youbuy.service.core;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -9,7 +11,7 @@ public class VanclConfig extends Configuration {
 
 	private String appSecret = "432229e00595840cb6d5f80d7b72f359";
 
-	private String appKey = "2012032298";
+	private String appKey ="2012032298";
 	private String sign;
 	private String ver = "1.0";
 	private String sign_method = "md5";
@@ -19,13 +21,13 @@ public class VanclConfig extends Configuration {
 	private String uid = "A9FFDE3559430A7B1E23A03F24FCDA05";
 	private String ttid = "api.tool.vancl.com2012032298apitool_wap_2.0";
 
-	public void init() {
-		super.getMap().put("appKey", appKey);
-		super.getMap().put("ver", ver);
-		super.getMap().put("sign_method", sign_method);
-		super.getMap().put("source", source);
-		super.getMap().put("uid", uid);
-		super.getMap().put("ttid", ttid);
+	public void init() throws UnsupportedEncodingException {
+		super.getMap().put("appkey", URLEncoder.encode(appKey,"UTF-8"));
+		super.getMap().put("ver", URLEncoder.encode(ver,"UTF-8"));
+		super.getMap().put("sign_method", URLEncoder.encode(sign_method,"UTF-8"));
+		super.getMap().put("source", URLEncoder.encode(source,"UTF-8"));
+		super.getMap().put("uid", URLEncoder.encode(uid,"UTF-8"));
+		super.getMap().put("ttid", URLEncoder.encode(ttid,"UTF-8"));
 	}
 
 	public String getAppKey() {
@@ -33,7 +35,7 @@ public class VanclConfig extends Configuration {
 	}
 
 	public void setAppKey(String appKey) {
-		super.getMap().put("appKey", appKey);
+		super.getMap().put("appkey", appKey);
 		this.appKey = appKey;
 	}
 
@@ -41,12 +43,14 @@ public class VanclConfig extends Configuration {
 		return sign;
 	}
 
-	public void setSign() {
+	public void setSign() throws UnsupportedEncodingException {
 		String s = appSecret + "appkey" + appKey + "format"
 				+ format + "sign_method" + sign_method + "source" + source
 				+ "t" + t + "ttid" + ttid + "uid" + uid + "ver" + ver;
+		System.out.println("before encryped :" + s);
 		String sign = EncryptUtil.md5(s);
-		super.getMap().put("sign", sign);
+		System.out.println("sign : " + sign);
+		super.getMap().put("sign", URLEncoder.encode(sign,"UTF-8"));
 		this.sign = sign;
 	}
 
@@ -72,19 +76,19 @@ public class VanclConfig extends Configuration {
 		return t;
 	}
 
-	public void setT() {
+	public void setT() throws UnsupportedEncodingException {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddhhmmss");
 		String time = sdf.format(new Date()).toString();
-		super.getMap().put("t", "20120410095553");
-		this.t = "20120410095553";
+		super.getMap().put("t", URLEncoder.encode(time,"UTF-8"));
+		this.t = time;
 	}
 
 	public String getFormat() {
 		return format;
 	}
 
-	public void setFormat(String format) {
-		super.getMap().put("format", format);
+	public void setFormat(String format) throws UnsupportedEncodingException {
+		super.getMap().put("format", URLEncoder.encode(format,"UTF-8"));
 		this.format = format;
 	}
 

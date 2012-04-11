@@ -25,7 +25,7 @@ public class EncryptUtil {
 	}
 	
 	public static void main(String[] args){
-		String s =  "432229e00595840cb6d5f80d7b72f359" + "appkey2012032298formatjsonsign_methodmd5sourceapi.tool.vancl.comt20120409104818ttidapi.tool.vancl.com2012032298apitool_wap_2.0uidA9FFDE3559430A7B1E23A03F24FCDA05ver1.0";
+		String s =  "appsecret432229e00595840cb6d5f80d7b72f359" + "appkey2012032298formatjsonsign_methodmd5sourceapi.tool.vancl.comt20120411011815ttidapi.tool.vancl.com2012032298apitool_wap_2.0uidA9FFDE3559430A7B1E23A03F24FCDA05ver1.0";
 		String encyped = md5(s);
 		System.out.println(encyped);
 	}

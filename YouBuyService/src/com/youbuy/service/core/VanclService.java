@@ -1,5 +1,7 @@
 package com.youbuy.service.core;
 
+import java.io.UnsupportedEncodingException;
+
 public class VanclService extends YoubuyService {
 
 	private StringBuffer url;
@@ -17,8 +19,9 @@ public class VanclService extends YoubuyService {
 
 	/**
 	 * for test the service
+	 * @throws UnsupportedEncodingException 
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args) throws UnsupportedEncodingException {
 		VanclConfig vc = new VanclConfig();
 		vc.init();
 		vc.setFormat("json");
