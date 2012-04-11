@@ -26,7 +26,7 @@ public class YoubuyOauth10a {
 				.build();
 	}
 
-	private void prepareForCall() {
+	public Token prepareForCall() {
 		Token requestToken = service.getRequestToken();
 		String authorizationUrl = service.getAuthorizationUrl(requestToken);
 		try {
@@ -41,6 +41,7 @@ public class YoubuyOauth10a {
 		
 		Verifier verifier = new Verifier(new Scanner(System.in).nextLine());
 	    accessToken = service.getAccessToken(requestToken, verifier);
+	    return accessToken;
 	}
 		 
 }
