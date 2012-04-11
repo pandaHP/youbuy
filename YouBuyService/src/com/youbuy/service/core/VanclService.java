@@ -12,7 +12,7 @@ public class VanclService extends YoubuyService {
 		url = new StringBuffer("http://p-api.gicp.net");
 	}
 
-	public Object getWeeklyranking() {
+	public String getWeeklyranking() {
 		url.append("/salesvolume/weeklyranking");
 		return YoubuyService.handleGet(YoubuyService.handleArguments(url, vc));
 	}
@@ -24,10 +24,11 @@ public class VanclService extends YoubuyService {
 	public static void main(String[] args) throws UnsupportedEncodingException {
 		VanclConfig vc = new VanclConfig();
 		vc.init();
-		vc.setFormat("json");
+		vc.setFormat("xml");
 		vc.setT();
 		vc.setSign();
 		VanclService vs = new VanclService(vc);
-		Object result = vs.getWeeklyranking();
+		String result = vs.getWeeklyranking();
+		System.out.println(result);
 	}
 }

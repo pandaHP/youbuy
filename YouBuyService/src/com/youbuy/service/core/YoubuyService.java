@@ -46,19 +46,20 @@ public class YoubuyService {
 		return url.toString();
 	}
 
-	public static Object handleGet(String url) {
+	public static String handleGet(String url) {
 		HttpClient httpclient = new DefaultHttpClient();
 		try {
 			HttpGet httpget = new HttpGet(url);
 			ResponseHandler<String> responseHandler = new BasicResponseHandler();
-
-			return httpclient.execute(httpget, responseHandler);
+		
+			String response = httpclient.execute(httpget, responseHandler);
+			return response ;
 		} catch (ClientProtocolException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
-
+			httpclient.getConnectionManager().shutdown();
 		}
 		return null;
 	}
