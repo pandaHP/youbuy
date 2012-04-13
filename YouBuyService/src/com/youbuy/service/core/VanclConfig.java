@@ -16,7 +16,7 @@ public class VanclConfig extends Configuration {
 	private String ver = "1.0";
 	private String sign_method = "md5";
 	private String t;
-	private String format;
+	private String format = "xml";
 	private String source = "api.tool.vancl.com";
 	private String uid = "A9FFDE3559430A7B1E23A03F24FCDA05";
 	private String ttid = "api.tool.vancl.com2012032298apitool_wap_2.0";
@@ -28,6 +28,7 @@ public class VanclConfig extends Configuration {
 		super.getMap().put("source", URLEncoder.encode(source,"UTF-8"));
 		super.getMap().put("uid", URLEncoder.encode(uid,"UTF-8"));
 		super.getMap().put("ttid", URLEncoder.encode(ttid,"UTF-8"));
+		super.getMap().put("format", URLEncoder.encode(format,"UTF-8"));
 	}
 
 	public String getAppKey() {

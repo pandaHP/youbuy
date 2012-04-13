@@ -30,7 +30,7 @@ CREATE TABLE `city` (
   `city_lat` varchar(50) DEFAULT NULL,
   `city_website` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`city_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=gb2312;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -51,6 +51,8 @@ DROP TABLE IF EXISTS `deal`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `deal` (
   `deal_id` int(11) NOT NULL AUTO_INCREMENT,
+  `city_id` int(11) NOT NULL,
+  `merch_id` int(11) NOT NULL,
   `deal_origin` varchar(30) DEFAULT NULL,
   `deal_title` varchar(256) DEFAULT NULL,
   `deal_rank` int(11) DEFAULT NULL,
@@ -68,9 +70,9 @@ CREATE TABLE `deal` (
   `deal_start_time` datetime DEFAULT NULL,
   `deal_end_time` datetime DEFAULT NULL,
   PRIMARY KEY (`deal_id`),
-  CONSTRAINT `merch_id` FOREIGN KEY (`deal_id`) REFERENCES `merchant` (`merch_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `city_id` FOREIGN KEY (`deal_id`) REFERENCES `city` (`city_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  FOREIGN KEY (`merch_id`) REFERENCES `merchant` (`merch_id`),
+  FOREIGN KEY (`city_id`) REFERENCES `city` (`city_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=gb2312;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -101,7 +103,7 @@ CREATE TABLE `merchant` (
   `merch_email` varchar(100) DEFAULT NULL,
   `merch_url` varchar(256) DEFAULT NULL,
   PRIMARY KEY (`merch_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=gb2312;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
