@@ -17,17 +17,23 @@ public class VanclService extends YoubuyService {
 	// to get the vancl sales volume
 	public String getWeeklyranking() {
 		url.append("/salesvolume/weeklyranking");
-		return YoubuyService.handleGet(YoubuyService.handleArguments(url, vc));
+		String result =  YoubuyService.handleGet(YoubuyService.handleArguments(url, vc));
+		url = new StringBuffer(url.substring(0,21));
+		return result;
 	}
 
 	public String getMalesRanking() {
 		url.append("/salesvolume/malesranking");
-		return YoubuyService.handleGet(YoubuyService.handleArguments(url, vc));
+		String result =  YoubuyService.handleGet(YoubuyService.handleArguments(url, vc));
+		url = new StringBuffer(url.substring(0,21));
+		return result;
 	}
 
 	public String getLadiesRanking() {
 		url.append("/salesvolume/ladiesranking");
-		return YoubuyService.handleGet(YoubuyService.handleArguments(url, vc));
+		String result = YoubuyService.handleGet(YoubuyService.handleArguments(url, vc));
+		url = new StringBuffer(url.substring(0,21));
+		return result;
 	}
 
 	/**
