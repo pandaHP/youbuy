@@ -45,6 +45,22 @@ public class YoubuyService {
 		System.out.println(url.toString());
 		return url.toString();
 	}
+	
+	public static List<String> sortedKeys(HashMap<String, Object> prop){
+		Set<String> keys = prop.keySet();
+		List<String> sortedKeys = new ArrayList<String>(keys);
+		Collections.sort(sortedKeys, new Comparator<String>() {
+
+			@Override
+			public int compare(String o1, String o2) {
+				// TODO Auto-generated method stub
+				return o1.compareTo(o2);
+			}
+
+		});
+		
+		return sortedKeys;
+	}
 
 	public static String handleGet(String url) {
 		HttpClient httpclient = new DefaultHttpClient();

@@ -4,6 +4,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import com.youbuy.service.core.util.EncryptUtil;
 
@@ -29,6 +30,7 @@ public class VanclConfig extends Configuration {
 		super.getMap().put("uid", URLEncoder.encode(uid,"UTF-8"));
 		super.getMap().put("ttid", URLEncoder.encode(ttid,"UTF-8"));
 		super.getMap().put("format", URLEncoder.encode(format,"UTF-8"));
+		this.setT();
 	}
 
 	public String getAppKey() {
@@ -45,9 +47,15 @@ public class VanclConfig extends Configuration {
 	}
 
 	public void setSign() throws UnsupportedEncodingException {
-		String s = appSecret + "appkey" + appKey + "format"
-				+ format + "sign_method" + sign_method + "source" + source
-				+ "t" + t + "ttid" + ttid + "uid" + uid + "ver" + ver;
+//		String s = appSecret + "appkey" + appKey + "format"
+//				+ format + "sign_method" + sign_method + "source" + source
+//				+ "t" + t + "ttid" + ttid + "uid" + uid + "ver" + ver;
+		List<String> sortedKeys = YoubuyService.sortedKeys(super.getMap());
+		String s = appSecret;
+		for(String key : sortedKeys){
+			String temp = key+super.getMap().get(key);
+			s += temp;
+		}
 		System.out.println("before encryped :" + s);
 		String sign = EncryptUtil.md5(s);
 		System.out.println("sign : " + sign);
