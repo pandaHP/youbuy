@@ -4,6 +4,9 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
+
+import com.youbuy.service.core.util.EncryptUtil;
 
 public class FiftyNineSecondConfig extends Configuration {
 
@@ -49,6 +52,7 @@ public class FiftyNineSecondConfig extends Configuration {
 
 	public void setMethod(String method) {
 		this.method = method;
+		super.getMap().put("method", method);
 	}
 
 	public String getTimestamp() {
@@ -56,9 +60,9 @@ public class FiftyNineSecondConfig extends Configuration {
 	}
 
 	public void setTimestamp() throws UnsupportedEncodingException {
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-		String time = sdf.format(new Date()).toString();
-		super.getMap().put("timestamp", URLEncoder.encode(time,"UTF-8"));
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String time = sdf.format(new Date());
+		super.getMap().put("timestamp", time);
 		this.timestamp = time;
 	}
 
@@ -82,7 +86,17 @@ public class FiftyNineSecondConfig extends Configuration {
 		return sign;
 	}
 
-	public void setSign(String sign) {
+	public void setSign() throws UnsupportedEncodingException {
+		List<String> sortedKeys = YoubuyService.sortedKeys(super.getMap());
+		String s = appSecret;
+		for(String key : sortedKeys){
+			String temp = key+super.getMap().get(key);
+			s += temp;
+		}
+		System.out.println("before encryped :" + s);
+		String sign = EncryptUtil.md5(s);
+		System.out.println("sign : " + sign);
+		super.getMap().put("sign", URLEncoder.encode(sign,"UTF-8"));
 		this.sign = sign;
 	}
 

@@ -1,6 +1,9 @@
 package com.youbuy.service.core;
 
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -42,7 +45,7 @@ public class YoubuyService {
 			i++;
 		}
 
-		System.out.println(url.toString());
+		System.out.println(url.length() + url.toString());
 		return url.toString();
 	}
 	
@@ -65,7 +68,9 @@ public class YoubuyService {
 	public static String handleGet(String url) {
 		HttpClient httpclient = new DefaultHttpClient();
 		try {
-			HttpGet httpget = new HttpGet(url);
+			URL newUrl = new URL(url);
+			URI uri = new URI(newUrl.getProtocol(), newUrl.getHost(), newUrl.getPath(), newUrl.getQuery(), null);
+			HttpGet httpget = new HttpGet(uri);
 			ResponseHandler<String> responseHandler = new BasicResponseHandler();
 		
 			String response = httpclient.execute(httpget, responseHandler);
@@ -73,6 +78,9 @@ public class YoubuyService {
 		} catch (ClientProtocolException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (URISyntaxException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			httpclient.getConnectionManager().shutdown();
