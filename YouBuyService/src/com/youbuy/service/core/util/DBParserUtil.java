@@ -180,6 +180,12 @@ public class DBParserUtil {
 		
 		return null;
 	}
+	
+	//TBD
+	public static int getPageSize(String xmlTotalResults){
+		
+		return 0;
+	}
 
 	private static String getTagValue(String sTag, Element eElement) {
 		NodeList nlList = eElement.getElementsByTagName(sTag).item(0)

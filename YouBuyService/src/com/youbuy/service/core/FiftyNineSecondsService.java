@@ -93,8 +93,10 @@ public class FiftyNineSecondsService extends YoubuyService {
 			List<Integer> cats = DBParserUtil.getAllCats(xmlCats);
 			System.out.println(cats);
 			for (int i : cats) {
-				fnc.init();
-				System.out.println(fnss.getItemListByCats(i, 1));
+				for (int n = 1; n <= 99; n++) {
+					fnc.init();
+					System.out.println(fnss.getItemListByCats(i, n));
+				}
 			}
 
 		} catch (UnsupportedEncodingException e1) {
