@@ -1,6 +1,9 @@
 package com.youbuy.service.core;
 
 import java.io.UnsupportedEncodingException;
+import java.util.List;
+
+import com.youbuy.service.core.util.DBParserUtil;
 
 public class FiftyNineSecondsService extends YoubuyService {
 
@@ -29,6 +32,8 @@ public class FiftyNineSecondsService extends YoubuyService {
 
 		String result = YoubuyService.handleGet(YoubuyService.handleArguments(
 				url, fnc));
+		url = new StringBuffer("http://gw.api.59miao.com/Router/Rest");
+		fnc.getMap().clear();
 		return result;
 	}
 
@@ -51,6 +56,8 @@ public class FiftyNineSecondsService extends YoubuyService {
 		fnc.setSign();
 		String result = YoubuyService.handleGet(YoubuyService.handleArguments(
 				url, fnc));
+		url = new StringBuffer("http://gw.api.59miao.com/Router/Rest");
+		fnc.getMap().clear();
 		return result;
 	}
 
@@ -70,6 +77,8 @@ public class FiftyNineSecondsService extends YoubuyService {
 
 		String result = YoubuyService.handleGet(YoubuyService.handleArguments(
 				url, fnc));
+		url = new StringBuffer("http://gw.api.59miao.com/Router/Rest");
+		fnc.getMap().clear();
 		return result;
 	}
 
@@ -78,7 +87,16 @@ public class FiftyNineSecondsService extends YoubuyService {
 		try {
 			fnc.init();
 			FiftyNineSecondsService fnss = new FiftyNineSecondsService(fnc);
-			System.out.println(fnss.getShopInfo(1004));
+
+			// first get the categories of the all items
+			String xmlCats = fnss.getItemCats();
+			List<Integer> cats = DBParserUtil.getAllCats(xmlCats);
+			System.out.println(cats);
+			for (int i : cats) {
+				fnc.init();
+				System.out.println(fnss.getItemListByCats(i, 1));
+			}
+
 		} catch (UnsupportedEncodingException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();

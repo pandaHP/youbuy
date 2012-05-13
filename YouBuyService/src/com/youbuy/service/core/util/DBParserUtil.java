@@ -2,6 +2,8 @@ package com.youbuy.service.core.util;
 
 import java.io.IOException;
 import java.io.StringReader;
+import java.util.ArrayList;
+import java.util.List;
 
 import youbuy.db.dao.CityDAO;
 import youbuy.db.dao.DealDAO;
@@ -94,7 +96,7 @@ public class DBParserUtil {
 	}
 	
 	
-	public static void parseDeal59Second(String dealXML) {
+	public static void parseDeal59Seconds(String dealXML) {
 		StringReader sr = new StringReader(dealXML);
 
 		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
@@ -118,7 +120,6 @@ public class DBParserUtil {
 
 					Element eElement = (Element) node;
 					String product_name = getTagValue("product_name", eElement);
-					String price = getTagValue("price", eElement);
 					String image_name = getTagValue("image_name", eElement);
 					String image_path = getTagValue("image_path", eElement);
 
@@ -139,6 +140,45 @@ public class DBParserUtil {
 		} finally {
 			sr.close();
 		}
+	}
+	
+	public static List<Integer> getAllCats(String xmlCats){
+		StringReader sr = new StringReader(xmlCats);
+
+		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+		DocumentBuilder dBuilder;
+		try {
+
+			dBuilder = dbFactory.newDocumentBuilder();
+
+			Document doc = dBuilder.parse(new InputSource(sr));
+			doc.getDocumentElement().normalize();
+
+			NodeList nl = doc.getElementsByTagName("itemcat");
+			int len = nl.getLength();
+			ArrayList<Integer> cats = new ArrayList<Integer>();
+			for (int i = 1; i < len-1; i++) {
+				Node node = nl.item(i);
+
+				if (node.getNodeType() == Node.ELEMENT_NODE) {
+					Element eElement = (Element) node;
+					Integer cid = Integer.valueOf(getTagValue("cid", eElement));
+					cats.add(cid);
+				}
+			}
+			
+			return cats;
+		} catch (ParserConfigurationException e) {
+			e.printStackTrace();
+		} catch (SAXException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			sr.close();
+		}
+		
+		return null;
 	}
 
 	private static String getTagValue(String sTag, Element eElement) {

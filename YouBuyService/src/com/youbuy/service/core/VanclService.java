@@ -4,8 +4,6 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
-import com.youbuy.service.core.util.DBParserUtil;
-
 public class VanclService extends YoubuyService {
 
 	private StringBuffer url;
