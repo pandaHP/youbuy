@@ -1,6 +1,5 @@
 package com.youbuy.service.core;
 
-import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
@@ -179,12 +178,12 @@ public class VanclService extends YoubuyService {
 	 * 
 	 * @throws IOException
 	 */
-	public static void main(String[] args) throws IOException {
-		VanclConfig vc = new VanclConfig();
-		vc.init();
-		VanclService vs = new VanclService(vc);
-		String result = vs.getProductDetailOfOneColor("0051138");
-		System.out.println(result);
-		// DBParserUtil.parseDealVancl(result);
-	}
+//	public static void main(String[] args) throws IOException {
+//		VanclConfig vc = new VanclConfig();
+//		vc.init();
+//		VanclService vs = new VanclService(vc);
+//		String result = vs.getProductDetailOfOneColor("0051138");
+//		System.out.println(result);
+//		// DBParserUtil.parseDealVancl(result);
+//	}
 }
